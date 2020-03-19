@@ -13,8 +13,12 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
+
+import PostPage from '../PostPage/PostPage';
+import AdminPage from '../AdminPage/AdminPage';
+import MessagePage from '../MessagePage/MessagePage';
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
+import MainPage from '../MainPage/MainPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
@@ -46,7 +50,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={UserPage}
+              component={MainPage}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
@@ -56,6 +60,9 @@ class App extends Component {
               component={InfoPage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
+            <Route exact path="/AdminPage" component={AdminPage}/>
+            <Route exact path="/PostPage" component={PostPage}/>
+            <Route exact path="/MessagePage" component={MessagePage}/>
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />
