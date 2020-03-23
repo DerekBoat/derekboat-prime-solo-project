@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class AdminPage extends Component {
+    
     componentDidMount() {
         this.getUsers();
     }// end componentDidMount
@@ -9,8 +10,8 @@ class AdminPage extends Component {
     // Sends a signal to the saga listener to send the get request to the database
     getUsers = () => {
         this.props.dispatch({ type: 'GET_USERS' })
-        console.log('hello');
     }
+
     backToHome = () => {
         this.props.history.push('/')
     }
@@ -28,10 +29,8 @@ class AdminPage extends Component {
             <div>
                 <div>
                     <h1>Hello Admin!</h1>
-                        List of users <br />
-        User ID Username
                         <button onClick={this.backToHome}>Back to Home</button>
-                    <button onClick={this.getUsers}>Get those users</button>
+                        <h1>List of users</h1>
                     {this.props.state.userList[0] ? (
                         <ul>
                             {this.props.state.userList.map(user => (
