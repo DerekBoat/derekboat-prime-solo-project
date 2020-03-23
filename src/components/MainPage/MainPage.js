@@ -15,17 +15,24 @@ class MainPage extends Component {
     }
     toPostPage = () => {
         this.props.history.push('/PostPage');
+        this.props.dispatch({ type: 'UNEDIT_MODE' });
+        this.props.dispatch({ type: 'UNEDIT_POST'});
     }
 
     getPosts = () => {
-        this.props.dispatch({ type: 'GET_POSTS' })
+        this.props.dispatch({ type: 'GET_POSTS' });
         console.log('in getPosts');
     }
-    deletePost = () => {
-        console.log('hello from delete Post');
+    deletePost = (data) => {
+        this.props.dispatch({
+            type: 'DELETE_POST',
+            payload: data
+          })
     }
-    editPost = () => {
-        console.log('hello from edit post');
+    editPost = (data) => {
+        this.props.dispatch({ type: 'EDIT_POST', payload: data});
+        this.props.history.push('/PostPage',);
+        this.props.dispatch({type: 'EDIT_MODE'});
     }
     render() {
         return (
@@ -40,7 +47,7 @@ class MainPage extends Component {
                         <ul>
                             {this.props.state.posts.map(post => (
                                 <div key={post.id} >
-                                    <li>{post.title} <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' /><button onClick={() => this.deletePost(post.id)}>DELETE</button><button onClick={() => this.editPost(post.id)}>EDIT</button></li>
+                                    <li>{post.title} <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' /><button onClick={() => this.deletePost(post.id)}>DELETE</button><button onClick={() => this.editPost(post)}>EDIT</button></li>
 
                                 </div>
                             ))}

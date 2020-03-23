@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class AdminPage extends Component {
-    
+
     componentDidMount() {
         this.getUsers();
     }// end componentDidMount
@@ -27,8 +27,7 @@ class AdminPage extends Component {
         return (
 
             <div>
-                <div>
-                    <h1>Hello Admin!</h1>
+                    <h1>For Admin Eyes Only!</h1>
                         <button onClick={this.backToHome}>Back to Home</button>
                         <h1>List of users</h1>
                     {this.props.state.userList[0] ? (
@@ -43,7 +42,6 @@ class AdminPage extends Component {
                     ) : (
                             <p>No Data</p>
                         )}
-                </div>
             </div>
         )
     };

@@ -4,6 +4,8 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import userList from './adminReducer';
 import posts from './postsReducer';
+import edit from './editPost';
+import editMode from './editMode';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   userList,
   posts,
+  edit,
+  editMode,
 });
 
 export default rootReducer;

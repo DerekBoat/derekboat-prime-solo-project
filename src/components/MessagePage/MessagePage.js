@@ -15,7 +15,9 @@ class MessagePage extends Component {
     render() {
       return (
         <div>
-         Hello from message page 
+         Message feature coming soon!<br/>
+         <img src="https://i.redd.it/nwa52qoha8az.jpg" ></img>
+         <br/>
          <button onClick={this.toMainPage}>Back to Main Page</button>
         </div>
       );
