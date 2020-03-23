@@ -4,7 +4,7 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 
-"Create a new database named holiday_app_database"
+--Create database named "holiday_app_database"
 
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,

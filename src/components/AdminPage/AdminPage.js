@@ -2,6 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class AdminPage extends Component {
+    componentDidMount() {
+        this.getUsers();
+    }// end componentDidMount
+
+    // Sends a signal to the saga listener to send the get request to the database
+    getUsers = () => {
+        this.props.dispatch({ type: 'GET_USERS' })
+        console.log('hello');
+    }
+    backToHome = () => {
+        this.props.history.push('/')
+    }
+
+    deleteUser = (data) => {
+        this.props.dispatch({
+          type: 'DELETE_USER',
+          payload: data
+        })
+      }
 
     render() {
         return (
@@ -9,22 +28,33 @@ class AdminPage extends Component {
             <div>
                 <div>
                     <h1>Hello Admin!</h1>
-                    <p>
                         List of users <br />
-        User ID Username <button>Delete User</button>
-                        <button>Back to Home</button>
-                    </p>
+        User ID Username
+                        <button onClick={this.backToHome}>Back to Home</button>
+                    <button onClick={this.getUsers}>Get those users</button>
+                    {this.props.state.userList[0] ? (
+                        <ul>
+                            {this.props.state.userList.map(user => (
+                                <div key={user.id} >
+                                    <li>{user.username} <button onClick={() => this.deleteUser(user.id)}>DELETE</button></li>
+
+                                </div>
+                            ))}
+                        </ul>
+                    ) : (
+                            <p>No Data</p>
+                        )}
                 </div>
             </div>
         )
     };
 }
 
-const mapReduxStateToProps = reduxState => ({
-    reduxState,
+const mapStateToProps = state => ({
+    state,
 });
 
-export default connect(mapReduxStateToProps)(AdminPage);
+export default connect(mapStateToProps)(AdminPage);
 
 
 
