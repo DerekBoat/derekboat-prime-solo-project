@@ -5,7 +5,6 @@
 -- Otherwise you will have errors!
 
 --Create database named "holiday_app_database"
-
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -27,6 +26,7 @@ CREATE TABLE "messages" (
     "posts_id" INTEGER REFERENCES "posts",
     "user_id" INTEGER REFERENCES "user"
 );
+
 
 INSERT INTO "posts" ("user_id", "title", "image_path", "description")
 VALUES ('5', 'Inflatable Santa', 'https://images-na.ssl-images-amazon.com/images/I/718XP2nASQL._AC_SX425_.jpg', 'Its a big jolly ol saint nick, perfect for your yard!'),
