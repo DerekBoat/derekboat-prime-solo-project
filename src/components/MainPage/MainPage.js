@@ -6,7 +6,7 @@ class MainPage extends Component {
     componentDidMount() {
         this.getPosts();
     }// end componentDidMount
-
+    
     toAdminPage = () => {
         this.props.history.push('/AdminPage');
     }

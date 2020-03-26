@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const userStrategy = require('../strategies/user.strategy');
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log("in getPost route");
     let queryString = 'SELECT * FROM "posts" ORDER BY "id" ASC';
     pool.query(queryString)
@@ -14,7 +16,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', userStrategy.authenticate('local'), (req, res) => {
     console.log('in postPost route', req.body)
     const newPost = req.body;
     //   const password = encryptLib.encryptPassword(req.body.password);
@@ -24,7 +26,7 @@ router.post('/', (req, res) => {
         .catch(() => res.sendStatus(500));
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log('in delete post.router');
     const deleteId = req.params.id;
     const queryText = `DELETE FROM "posts" WHERE "id" =$1`;
@@ -33,7 +35,7 @@ router.delete('/:id', (req, res) => {
         .catch(() => res.sendStatus(500));
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated,(req, res) => {
     const updateItem = req.body;
     console.log('in postRouter Put', updateItem);
     const queryText = 'UPDATE "posts" SET (user_id, title, image_path, description) = ($1, $2, $3, $4) WHERE "id"=$5';
@@ -41,6 +43,5 @@ router.put('/:id', (req, res) => {
     .then(() => res.sendStatus(200))
     .catch(() => res.sendStatus(500));
 })
-
 
 module.exports = router;

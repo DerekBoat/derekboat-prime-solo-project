@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require("../modules/pool");
+const userStrategy = require('../strategies/user.strategy');
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log("in getUsers route");
     let queryString = 'SELECT "username", "id" FROM "user" ORDER BY "id" ASC';
     pool.query(queryString)
@@ -14,7 +16,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log('in delete admin.router');
     const deleteId = req.params.id;
     const queryText = `DELETE FROM "user" WHERE "id" =$1`;

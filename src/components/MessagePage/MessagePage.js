@@ -15,8 +15,9 @@ class MessagePage extends Component {
     render() {
       return (
         <div>
-         Message feature coming soon!<br/>
-         <img src="https://i.redd.it/nwa52qoha8az.jpg" ></img>
+        <h1>Hello {this.props.state.user.username}!</h1><br/>
+        <h2>Welcome to your messages</h2>
+         
          <br/>
          <button onClick={this.toMainPage}>Back to Main Page</button>
         </div>
@@ -25,8 +26,8 @@ class MessagePage extends Component {
   }
   
  
-  const mapReduxStateToProps = reduxState => ({
-    reduxState,
+  const mapStateToProps = state => ({
+    state,
   });
   
-  export default connect(mapReduxStateToProps)(MessagePage);
+  export default connect(mapStateToProps)(MessagePage);
