@@ -6,12 +6,11 @@ class MainPage extends Component {
     componentDidMount() {
         this.getPosts();
     }// end componentDidMount
-    
-    toAdminPage = () => {
-        this.props.history.push('/AdminPage');
-    }
-    toMessagePage = () => {
+
+    toMessagePage = (data) => {
         this.props.history.push('/MessagePage');
+        this.props.dispatch({ type: 'GET_ID', payload: data});
+        
     }
     toPostPage = () => {
         this.props.history.push('/PostPage');
@@ -39,7 +38,6 @@ class MainPage extends Component {
             <div>
                 <h1>Welcome To Happy Holiday-Cerations! The Raddest Holiday Trading Hub!</h1>
                 <br/>
-                <button onClick={this.toAdminPage}>To admin Page</button>
                 <button onClick={this.toMessagePage}>To message Page</button>
                 <button onClick={this.toPostPage}>To Post Page</button>
                 <br />
@@ -47,13 +45,16 @@ class MainPage extends Component {
                         <ul>
                             {this.props.state.posts.map(post => (
                                 <div key={post.id} >
-                                    <li>{post.title} <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' /><button onClick={() => this.deletePost(post.id)}>DELETE</button><button onClick={() => this.editPost(post)}>EDIT</button></li>
+                                    <li>{post.title} <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' />
+                                    <button onClick={() => this.deletePost(post.id)}>DELETE</button>
+                                    <button onClick={() => this.editPost(post)}>EDIT</button>
+                                    <button onClick={() => this.toMessagePage(post.user_id)}>Contact Owner</button></li>
 
                                 </div>
                             ))}
                         </ul>
                     ) : (
-                            <p>No Data</p>
+                            <p></p>
                         )}
             </div>
         );
