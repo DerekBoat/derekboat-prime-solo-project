@@ -23,9 +23,10 @@ CREATE TABLE "posts" (
 CREATE TABLE "messages" (
     "id" SERIAL PRIMARY KEY,
     "message" VARCHAR (500),
-    "posts_id" INTEGER REFERENCES "posts",
+    "reciever_id" INTEGER ,
     "user_id" INTEGER REFERENCES "user"
 );
+
 
 
 INSERT INTO "posts" ("user_id", "title", "image_path", "description")

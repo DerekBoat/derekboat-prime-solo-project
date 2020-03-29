@@ -7,6 +7,7 @@ import posts from './postsReducer';
 import edit from './editPost';
 import editMode from './editMode';
 import postUserId from './postIdReducer';
+import messages from './messageReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   edit,
   editMode,
   postUserId,
+  messages,
 });
 
 export default rootReducer;

@@ -22,7 +22,7 @@ class MessagePage extends Component {
   }
 
   toMainPage = () => {
-    // this.props.history.push('/');
+    this.props.history.push('/');
     this.props.dispatch({
       type: 'SEND_MESSAGE',
       payload: this.state
@@ -44,27 +44,24 @@ class MessagePage extends Component {
         <h2>Welcome to your messages</h2>
         <br />
         <h3>Send a message to </h3>
-        <textarea label="message" placeholder="Send a Message" onChange={event => this.handleChange(event, "message")} ></textarea>
+        <textarea label="message" placeholder="Send a Message" type="text" onChange={event => this.handleChange(event, "message")} ></textarea>
         <br />
         <button onClick={this.toMainPage}>Send Message</button>
         <h2>Previously recieved messages</h2>
-        {this.props.state.posts[0] ? (
+        {this.props.state.messages[0] ? (
           <ul>
-            {this.props.state.posts.map(post => (
-              <div key={post.id} >
-                <li>{post.title} <br />{post.description} <br /> <img alt='Decoration Post' src={post.image_path} width='250px' />
-                  <button onClick={() => this.deletePost(post.id)}>DELETE</button>
-                  <button onClick={() => this.editPost(post)}>EDIT</button>
-                  <button onClick={() => this.toMessagePage(post.user_id)}>Contact Owner</button></li>
-
+            {this.props.state.messages.map(messages => (
+              <div key={messages.id} >
+                <li>{messages.message}<button>delete</button></li>
               </div>
             ))}
           </ul>
         ) : (
-            <p>No Data</p>
+            <p></p>
           )}
-      </div>
-    );
+    
+    </div>
+    )
   }
 }
 

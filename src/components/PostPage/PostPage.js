@@ -33,6 +33,16 @@ class PostPage extends Component {
             this.props.history.push('/')
         }
     }
+
+    hidden = () => {
+        this.setState({
+            postId: this.props.state.edit.id,
+            postTitle: "Spooky Ghost",
+            postDescription: "A scary ghost sure to frighten children and adults alike!",
+            postImagePath: "https://paylessdailyonline.com/i5/asr/4fa7485f-eade-4750-ac9b-3f9236a48466_1.1e4dd0c1fcd0a71a431f85536fbe5d72.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
+            userId: this.props.state.user.id
+        })
+    }
     render() {
         return (
             <div>
@@ -42,16 +52,9 @@ class PostPage extends Component {
                 <textarea label="Image Path" placeholder="Image Path" value={this.state.postImagePath} onChange={event => this.handleChange(event, "postImagePath")} ></textarea>
 
                 <br /> <button onClick={this.submitPost}>Submit</button>
-
+                    <button onClick={this.hidden}>Hidden Button</button>
                 <br/>
-                Use for MVP DEMO
-                <br/>
-                Title: Spooky Ghost
-                <br/>
-                Description: A scary ghost sure to frighten children and adults alike!
-                <br/>
-                Image Path: https://paylessdailyonline.com/i5/asr/4fa7485f-eade-4750-ac9b-3f9236a48466_1.1e4dd0c1fcd0a71a431f85536fbe5d72.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF
-            </div>
+               </div>
         );
     }
 }

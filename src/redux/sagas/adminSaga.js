@@ -16,6 +16,7 @@ function* getUsers() {
   }
 }
 function* deleteUser(action) {
+  console.log('in delete user', action.payload);
     yield axios.delete(`/admin/${action.payload}`)
         .catch((error) => {
             console.log(error);

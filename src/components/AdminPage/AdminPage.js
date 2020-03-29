@@ -12,11 +12,8 @@ class AdminPage extends Component {
         this.props.dispatch({ type: 'GET_USERS' })
     }
 
-    backToHome = () => {
-        this.props.history.push('/')
-    }
-
     deleteUser = (data) => {
+        console.log('in delete user', data);
         this.props.dispatch({
           type: 'DELETE_USER',
           payload: data
@@ -28,13 +25,12 @@ class AdminPage extends Component {
 
             <div>
                     <h1>For Admin Eyes Only!</h1>
-                        <button onClick={this.backToHome}>Back to Home</button>
                         <h1>List of users</h1>
                     {this.props.state.userList[0] ? (
                         <ul>
                             {this.props.state.userList.map(user => (
                                 <div key={user.id} >
-                                    <li>{user.username} <button onClick={() => this.deleteUser(user.id)}>DELETE</button></li>
+                                    <li>{user.username} {user.id} <button onClick={() => this.deleteUser(user.id)}>DELETE</button></li>
 
                                 </div>
                             ))}

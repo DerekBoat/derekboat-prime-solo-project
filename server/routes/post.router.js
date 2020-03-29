@@ -16,10 +16,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
-router.post('/', userStrategy.authenticate('local'), (req, res) => {
+router.post('/', (req, res) => {
     console.log('in postPost route', req.body)
     const newPost = req.body;
-    //   const password = encryptLib.encryptPassword(req.body.password);
     const queryText = 'INSERT INTO "posts" (user_id, title, image_path, description) VALUES ($1, $2, $3, $4)';
     pool.query(queryText, [newPost.userId, newPost.postTitle, newPost.postImagePath, newPost.postDescription])
         .then(() => res.sendStatus(201))

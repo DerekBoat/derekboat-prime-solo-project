@@ -6,14 +6,14 @@ const userStrategy = require('../strategies/user.strategy');
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log("in getMessage route", req.params.id);
-    // let queryString = 'SELECT message FROM "messages" WHERE "id"=  ORDER BY "id" ASC';
-    // pool.query(queryString)
-    //     .then(results => {
-    //         res.send(results.rows);
-    //     }).catch(error => {
-    //         console.log(error);
-    //         res.sendStatus(500);
-    //     });
+    let queryString = `SELECT * FROM "messages" WHERE "reciever_id"= ${req.params.id} ORDER BY "id" ASC`;
+    pool.query(queryString)
+        .then(results => {
+            res.send(results.rows);
+        }).catch(error => {
+            console.log(error);
+            res.sendStatus(500);
+        });
 });
 
 router.post('/', (req, res) => {
