@@ -38,9 +38,10 @@ class MainPage extends Component {
                         <ul>
                             {this.props.state.posts.map(post => (
                                 <div key={post.id} >
-                                    <li>{post.title} {post.username}
+                                    <li>{post.title}<br/>
+                                    Posted By: {post.username}
                                       
-                                    <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' />
+                                    <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' /><br/>
                                     {this.props.state.user.id !== post.user_id && <button onClick={() => this.toMessagePage(post.user_id)}>Contact Owner</button>}
                                    {this.props.state.user.id === post.user_id && <button onClick={() => this.deletePost(post.id)}>DELETE</button>}
                                    {this.props.state.user.id === post.user_id && <button onClick={() => this.editPost(post)}>EDIT</button>}

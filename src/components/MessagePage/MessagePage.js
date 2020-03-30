@@ -21,6 +21,12 @@ class MessagePage extends Component {
     })
   }
 
+  hidden = () => {
+    this.setState({
+      message: 'Hi there, I am interested in your penny wise decoration, contact me at JeffBezos@amazon.com'
+    })
+  }
+
   toMainPage = () => {
     this.props.history.push('/');
     alert('Message Sent')
@@ -50,8 +56,8 @@ class MessagePage extends Component {
         <h1>Hello {this.props.state.user.username}!</h1><br />
         <h2>Welcome to your messages</h2>
         <br />
-        <h3>Send a message to </h3>
-        <textarea label="message" placeholder="Send a Message" type="text" onChange={event => this.handleChange(event, "message")} ></textarea>
+        <h3 onClick={this.hidden}>Send a message to </h3>
+        <textarea label="message" placeholder="Send a Message" type="text" value={this.state.message}onChange={event => this.handleChange(event, "message")} ></textarea>
         <br />
         <button onClick={this.toMainPage}>Send Message</button>
         <h2>Previously recieved messages</h2>
