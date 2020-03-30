@@ -26,29 +26,18 @@ function* addMessage(action) {
     // yield put({ type: 'GET_MESSAGES' });
 }
 
-// function* updatePost(action) {
-//     let objectToSend = action.payload;
-//     console.log('in updatePost', objectToSend);
-//     yield axios.put(`/post/${objectToSend.postId}`, objectToSend)
-//     .catch((error) => {
-//         console.log(error);
-//     });
-//     yield put ({ type: 'GET_POSTS' });
-// }
-
-// function* deletePost(action) {
-//     yield axios.delete(`/post/${action.payload}`)
-//         .catch((error) => {
-//             console.log(error);
-//         });
-//     yield put({ type: 'GET_POSTS' });
-// }
+function* deleteMessage(action) {
+    yield axios.delete(`/message/${action.payload}`)
+        .catch((error) => {
+            console.log(error);
+        });
+}
 
 function* messageSaga() {
     yield takeEvery('SEND_MESSAGE', addMessage);
     yield takeEvery('GET_MESSAGES', getMessages);
-    // yield takeEvery('DELETE_POST', deletePost);
-    // yield takeEvery('UPDATE_POST', updatePost);
+    yield takeEvery('DELETE_MESSAGE', deleteMessage);
+
 
 }
 

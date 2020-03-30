@@ -14,12 +14,13 @@ const Nav = (props) => (
       <h2 className="nav-title">Happy Holiday-Cerations</h2>
     </Link>
     <div className="nav-right">
-    <Link className="nav-link" to="/AdminPage">
+    {props.user.admin ? <Link className="nav-link" to="/AdminPage">Admin</Link> : ''}
+    {/* <Link className="nav-link" to="/AdminPage"> */}
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
-        {props.user.admin ? 'Admin' : ''}
-      </Link>
+        {/* {props.user.admin ? 'Admin' : ''}
+      </Link> */}
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,

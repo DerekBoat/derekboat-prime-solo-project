@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './MessagePage.css';
 
 class MessagePage extends Component {
 
@@ -10,7 +11,6 @@ class MessagePage extends Component {
 
   }
   componentDidMount = () => {
-    console.log(this.state);
     this.getMessages();
   }
 
@@ -23,6 +23,7 @@ class MessagePage extends Component {
 
   toMainPage = () => {
     this.props.history.push('/');
+    alert('Message Sent')
     this.props.dispatch({
       type: 'SEND_MESSAGE',
       payload: this.state
@@ -34,7 +35,13 @@ class MessagePage extends Component {
 
   handleChange = (event, type) => {
     this.setState({ [type]: event.target.value })
-    console.log(this.state.message);
+  }
+  deleteMessage = (data) => {
+    this.props.dispatch({
+      type: 'DELETE_MESSAGE',
+      payload: data
+    })
+    this.getMessages();
   }
 
   render() {
@@ -52,7 +59,7 @@ class MessagePage extends Component {
           <ul>
             {this.props.state.messages.map(messages => (
               <div key={messages.id} >
-                <li>{messages.message}<button>delete</button></li>
+                <div className={messages}>From Username: {messages.username}.<br/>Message: {messages.message}<button onClick={() => this.deleteMessage(messages.id)}>DELETE</button></div>
               </div>
             ))}
           </ul>

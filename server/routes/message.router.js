@@ -6,7 +6,7 @@ const userStrategy = require('../strategies/user.strategy');
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log("in getMessage route", req.params.id);
-    let queryString = `SELECT * FROM "messages" WHERE "reciever_id"= ${req.params.id} ORDER BY "id" ASC`;
+    let queryString = `SELECT "messages"."id", "message", "reciever_id", "user_id", "user"."username" FROM "messages" JOIN "user" ON "user"."id"="messages"."user_id" WHERE "reciever_id"=${req.params.id} ORDER BY "messages"."id" ASC`;
     pool.query(queryString)
         .then(results => {
             res.send(results.rows);
@@ -25,14 +25,14 @@ router.post('/', (req, res) => {
         .catch(() => res.sendStatus(500));
 });
 
-// router.delete('/:id', rejectUnauthenticated, (req, res) => {
-//     console.log('in delete post.router');
-//     const deleteId = req.params.id;
-//     const queryText = `DELETE FROM "posts" WHERE "id" =$1`;
-//     pool.query(queryText, [deleteId])
-//         .then(() => res.sendStatus(200))
-//         .catch(() => res.sendStatus(500));
-// });
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    console.log('in delete messages.router');
+    const deleteId = req.params.id;
+    const queryText = `DELETE FROM "messages" WHERE "id" =$1`;
+    pool.query(queryText, [deleteId])
+        .then(() => res.sendStatus(200))
+        .catch(() => res.sendStatus(500));
+});
 
 // router.put('/:id', rejectUnauthenticated,(req, res) => {
 //     const updateItem = req.body;

@@ -1,8 +1,8 @@
-const adminReducer = (state = [], action) => {
+const postUserReducer = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_USERS':
+        case 'POST_USERNAME':
             return action.payload;
-        case 'UNSET_USERS':
+        case 'UNSET_POST_USERNAME':
             return {};
         default:
             return state;
@@ -11,4 +11,4 @@ const adminReducer = (state = [], action) => {
 
 // user will be on the redux state at:
 // state.user
-export default adminReducer;
+export default postUserReducer;

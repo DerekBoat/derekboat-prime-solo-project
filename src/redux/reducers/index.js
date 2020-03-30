@@ -8,7 +8,7 @@ import edit from './editPost';
 import editMode from './editMode';
 import postUserId from './postIdReducer';
 import messages from './messageReducer';
-
+import postUsername from './postUserReducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -25,6 +25,7 @@ const rootReducer = combineReducers({
   editMode,
   postUserId,
   messages,
+  postUsername,
 });
 
 export default rootReducer;

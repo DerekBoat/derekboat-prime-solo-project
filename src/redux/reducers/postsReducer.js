@@ -1,9 +1,9 @@
-const postsReducer = (state = {}, action) => {
+const postsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_POSTS':
             return action.payload;
         case 'UNSET_POSTS':
-            return {};
+            return [];
         default:
             return state;
     }

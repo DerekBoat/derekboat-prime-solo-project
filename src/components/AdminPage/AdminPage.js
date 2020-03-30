@@ -30,7 +30,7 @@ class AdminPage extends Component {
                         <ul>
                             {this.props.state.userList.map(user => (
                                 <div key={user.id} >
-                                    <li>{user.username} {user.id} <button onClick={() => this.deleteUser(user.id)}>DELETE</button></li>
+                                    <li>{user.username} <button onClick={() => this.deleteUser(user.id)}>DELETE</button></li>
 
                                 </div>
                             ))}

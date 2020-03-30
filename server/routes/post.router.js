@@ -6,7 +6,8 @@ const userStrategy = require('../strategies/user.strategy');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log("in getPost route");
-    let queryString = 'SELECT * FROM "posts" ORDER BY "id" ASC';
+    let queryString = 'SELECT "posts"."id", "user_id", "title", "image_path", "description", "user"."username" FROM "posts" JOIN "user" ON "user"."id" = "posts"."user_id" ORDER BY "posts"."id" ASC'
+    ;
     pool.query(queryString)
         .then(results => {
             res.send(results.rows);

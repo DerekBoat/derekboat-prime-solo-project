@@ -12,14 +12,9 @@ class MainPage extends Component {
         this.props.dispatch({ type: 'GET_ID', payload: data});
         
     }
-    toPostPage = () => {
-        this.props.history.push('/PostPage');
-        this.props.dispatch({ type: 'UNEDIT_MODE' });
-        this.props.dispatch({ type: 'UNEDIT_POST'});
-    }
-
     getPosts = () => {
         this.props.dispatch({ type: 'GET_POSTS' });
+        this.props.dispatch({ type: 'GET_USERS' });
         console.log('in getPosts');
     }
     deletePost = (data) => {
@@ -36,19 +31,20 @@ class MainPage extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome To Happy Holiday-Cerations! The Raddest Holiday Trading Hub!</h1>
+                <h1>Welcome To Happy Holiday-Cerations</h1>
+                <h2>The Holiday Trading Hub!</h2>
                 <br/>
-                <button onClick={this.toMessagePage}>To message Page</button>
-                <button onClick={this.toPostPage}>To Post Page</button>
-                <br />
                 {this.props.state.posts[0] ? (
                         <ul>
                             {this.props.state.posts.map(post => (
                                 <div key={post.id} >
-                                    <li>{post.title} <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' />
-                                    <button onClick={() => this.deletePost(post.id)}>DELETE</button>
-                                    <button onClick={() => this.editPost(post)}>EDIT</button>
-                                    <button onClick={() => this.toMessagePage(post.user_id)}>Contact Owner</button></li>
+                                    <li>{post.title} {post.username}
+                                      
+                                    <br/>{post.description} <br/> <img alt='Decoration Post' src={post.image_path} width='250px' />
+                                    {this.props.state.user.id !== post.user_id && <button onClick={() => this.toMessagePage(post.user_id)}>Contact Owner</button>}
+                                   {this.props.state.user.id === post.user_id && <button onClick={() => this.deletePost(post.id)}>DELETE</button>}
+                                   {this.props.state.user.id === post.user_id && <button onClick={() => this.editPost(post)}>EDIT</button>}
+                                    </li>
 
                                 </div>
                             ))}
