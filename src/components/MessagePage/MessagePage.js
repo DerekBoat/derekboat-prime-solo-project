@@ -53,11 +53,10 @@ class MessagePage extends Component {
   render() {
     return (
       <div>
-        <h1>Hello {this.props.state.user.username}!</h1><br />
+        <h1>Hello {this.props.state.user.username}!</h1>
         <h2>Welcome to your messages</h2>
-        <br />
-        <h3 onClick={this.hidden}>Send a message to </h3>
-        <textarea label="message" placeholder="Send a Message" type="text" value={this.state.message}onChange={event => this.handleChange(event, "message")} ></textarea>
+        <h3 onClick={this.hidden}>Send a Message </h3>
+        <textarea className="textArea" label="message" placeholder="Send a Message" type="text" value={this.state.message}onChange={event => this.handleChange(event, "message")} ></textarea>
         <br />
         <button onClick={this.toMainPage}>Send Message</button>
         <h2>Previously recieved messages</h2>
@@ -65,7 +64,7 @@ class MessagePage extends Component {
           <ul>
             {this.props.state.messages.map(messages => (
               <div key={messages.id} >
-                <div className={messages}>From Username: {messages.username}.<br/>Message: {messages.message}<button onClick={() => this.deleteMessage(messages.id)}>DELETE</button></div>
+                <div className="messages">From Username: {messages.username}.<br/>Message: {messages.message}<button onClick={() => this.deleteMessage(messages.id)}>   DELETE</button></div>
               </div>
             ))}
           </ul>

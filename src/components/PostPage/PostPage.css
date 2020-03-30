@@ -1,0 +1,15 @@
+.title{
+    width: 100px;
+}
+.description{
+    width: 300px;
+}
+.image-path{
+    width: 300px;
+}
+
+button:hover{
+    background-color: #6a2c70;
+    color: #f2f2f2;
+    cursor: pointer;
+}

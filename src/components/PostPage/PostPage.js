@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './PostPage.css';
 
 class PostPage extends Component {
     state = {
@@ -40,20 +41,21 @@ class PostPage extends Component {
         this.setState({
             postId: this.props.state.edit.id,
             postTitle: "Spooky Witch",
-            postDescription: "A scary ghost sure to frighten children and adults alike!",
-            postImagePath: "https://paylessdailyonline.com/i5/asr/4fa7485f-eade-4750-ac9b-3f9236a48466_1.1e4dd0c1fcd0a71a431f85536fbe5d72.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
+            postDescription: "A gauranteed source of nightmares!",
+            postImagePath: "https://i5.walmartimages.com/asr/8a69cb1a-7e1d-43e9-a66f-8c995c722fff_2.7936d2242fee51c5094b01c954e31c58.jpeg",
             userId: this.props.state.user.id
         })
     }
     render() {
         return (
+
             <div>
                 <h3 onClick={this.hidden}>Submit a Post</h3>
-                <textarea label="Title" placeholder="Title" value={this.state.postTitle} onChange={event => this.handleChange(event, "postTitle")} ></textarea>
-                <textarea label="Description" placeholder="Description" value={this.state.postDescription} onChange={event => this.handleChange(event, "postDescription")} ></textarea>
-                <textarea label="Image Path" placeholder="Image Path" value={this.state.postImagePath} onChange={event => this.handleChange(event, "postImagePath")} ></textarea>
+                <textarea className="title" label="Title" placeholder="Title" value={this.state.postTitle} onChange={event => this.handleChange(event, "postTitle")} ></textarea>
+                <textarea className="description" label="Description" placeholder="Description" value={this.state.postDescription} onChange={event => this.handleChange(event, "postDescription")} ></textarea>
+                <textarea className="image-path" label="Image Path" placeholder="Image Path" value={this.state.postImagePath} onChange={event => this.handleChange(event, "postImagePath")} ></textarea>
 
-                <br /> <button onClick={this.submitPost}>Submit</button>
+                <br /> <button onClick={this.submitPost} className="submit">Submit</button>
                 <br />
             </div>
         );

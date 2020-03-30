@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './AdminPage.css';
 
 class AdminPage extends Component {
 
@@ -30,7 +31,7 @@ class AdminPage extends Component {
                         <ul>
                             {this.props.state.userList.map(user => (
                                 <div key={user.id} >
-                                    <li>{user.username} <button onClick={() => this.deleteUser(user.id)}>DELETE</button></li>
+                                    <li className="user">{user.username} <button onClick={() => this.deleteUser(user.id)}>DELETE</button></li>
 
                                 </div>
                             ))}

@@ -1,0 +1,14 @@
+.messages{
+    border: 1px solid #6a2c70;
+    padding: 10px
+}
+
+.textArea{
+    width: 400px;
+    height: auto;
+}
+
+button:hover{
+    background-color: #6a2c70;
+    color: #f2f2f2;
+}
